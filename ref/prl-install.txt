@@ -1,0 +1,8 @@
+# parallels with ubuntu install.
+1. Check up Customize settings before installation.
+2. Cancel share cloud folders with Linux and share Mac volumes with Linux.
+3. Cancel all in Applications. ex: Share Linux applications with Mac.
+4. Cancel all in More Options. Time: Do not sync.
+5. Cancel Shared Printers. 
+6. Close Feedback in Parallels Desktop Preferences.
+7. your_name: hadoop, server name: ubuntu, username: hadoop
