@@ -26,3 +26,23 @@ echo $JAVA_HOME
 ~~~
 ./tihdpwget.sh
 ~~~
+
+edit the file etc/hadoop/hadoop-env.sh
+~~~
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
+~~~
+Try the following command:
+~~~
+bin/hadoop
+~~~
+This will display the usage documentation for the hadoop script.
+
+# Setup passphraseless ssh
+Now check that you can ssh to the localhost without a passphrase:
+~~~
+ssh localhost
+~~~
+If you cannot ssh to localhost without a passphrase refer ref/setssh-guide.txt
+
+
+
