@@ -17,5 +17,24 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:/home/titus/nn</value>
+  </property>
+  <property>
+    <name>dfs.namenode.checkpoint.dir</name>
+    <value>file:/home/titus/sn</value>
+  </property>
+  <property>
+    <name>dfs.namenode.checkpoint.period</name>
+    <value>360</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:/home/titus/dn</value>
+  </property>
 </configuration>
