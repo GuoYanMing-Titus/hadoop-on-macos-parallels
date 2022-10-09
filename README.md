@@ -1,4 +1,4 @@
-# hadoop-on-macos-parallels
+# hadoop-on-ubuntu-based-on-Parallels-Desktop
 1. install Linux
 2. install JAVA JDK 8
 ~~~
