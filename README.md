@@ -44,5 +44,7 @@ ssh localhost
 ~~~
 If you cannot ssh to localhost without a passphrase refer ref/setssh-guide.txt
 
+# Configuring the Hadoop Daemons
+1. etc/hadoop/core-site.xml
 
 
