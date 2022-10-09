@@ -1,24 +1,27 @@
-SSH無密碼登入
-1.在這裡，我們要讓 master(dta1) 可以不用密碼、直接登入 slave 等主機來進行操作。
-我們需要生成 master(dta1) 的公鑰，所以我們要在 master(dta1) 主機裡面執行以下指令：
+SSH login without key in passwd
+~~~
 mkdir ~/.ssh
 cd ~/.ssh
 ssh-keygen -t rsa
+~~~
+2. scp pub key to dtm1/2, dtw1/2/3
+~~~
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 scp ~/.ssh/id_rsa.pub titus@dtm1:/home/titus/
 scp ~/.ssh/id_rsa.pub titus@dtm2:/home/titus/
 scp ~/.ssh/id_rsa.pub titus@dtw1:/home/titus/
 scp ~/.ssh/id_rsa.pub titus@dtw2:/home/titus/
 scp ~/.ssh/id_rsa.pub titus@dtw3:/home/titus/
+~~~
 
-2.執行 scp 指令的同時，可能會需要輸入目標主機的密碼；完成後會提示傳輸完畢。
-接著我們要在 dtm1,dtm2,dtw1,dtw2,dtw3 主機裡，將 ssh 公鑰保存到相對應的位置：
+3. login dtm1, dtm2, dtw1, dtw2, dtw3, append key(from master) to authorized_keys
+~~~
 cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
+~~~
 
-3.最後，我們回到 master
-主機，執行下列指令，確認是否能無密碼登入（每一台 slave 都要連看看，成功就 logout，回到 master，再試下一台）：
+3.back to dta1(master), try ssh to others.
+~~~
 ssh dtm1
-ssh dtm2
-ssh dtw1
-ssh dtw2
-ssh dtw3
+exit
+~~~
+
