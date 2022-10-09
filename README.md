@@ -81,12 +81,13 @@ sudo mv jdk1.8.0_341 ../
 ~~~
 設定環境變數
 ~~~
-vim /etc/profile
+sudo vim /etc/profile
 ~~~
-加入
+加入環境變數設定, 順便加入/home/titus/vmhdp-mac/bin
 ~~~
 export JAVA_HOME=/opt/jdk1.8.0_341
 export PATH=${PATH}:${JAVA_HOME}/bin
+export PATH=${PATH}:/home/titus/vmhdp-mac/bin
 ~~~
 更新變數
 ~~~
@@ -113,15 +114,19 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 ~~~
 2. scp pub key to dtm1/2,dtw1/2/3
 ~~~
-scp ~/.ssh/id_rsa.pub titus@dtm1:/home/titus/
-scp ~/.ssh/id_rsa.pub titus@dtm2:/home/titus/
-scp ~/.ssh/id_rsa.pub titus@dtw1:/home/titus/
-scp ~/.ssh/id_rsa.pub titus@dtw2:/home/titus/
-scp ~/.ssh/id_rsa.pub titus@dtw3:/home/titus/
+scp ~/.ssh/id_rsa.pub dtm1:/home/titus/
+scp ~/.ssh/id_rsa.pub dtm2:/home/titus/
+scp ~/.ssh/id_rsa.pub dtw1:/home/titus/
+scp ~/.ssh/id_rsa.pub dtw2:/home/titus/
+scp ~/.ssh/id_rsa.pub dtw3:/home/titus/
 ~~~
 3. login dtm1, dtm2, dtw1, dtw2, dtw3, append key(from master) to authorized_keys
 ~~~
+ssh dtm1
+~~~
+~~~
 cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
+rm ~/id_rsa.pub
 ~~~
 
 4.back to dta1(master), try ssh to others.
@@ -156,32 +161,3 @@ set git config
 git config --global user.email "your email"
 git config --global user.name "your name"
 ~~~
-
-
-
-# download hadoop
-1. run tihdpwget.sh
-~~~
-./tihdpwget.sh
-~~~
-
-edit the file etc/hadoop/hadoop-env.sh
-~~~
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
-~~~
-Try the following command:
-~~~
-bin/hadoop
-~~~
-This will display the usage documentation for the hadoop script.
-
-# Setup passphraseless ssh
-Now check that you can ssh to the localhost without a passphrase:
-~~~
-ssh localhost
-~~~
-If you cannot ssh to localhost without a passphrase refer ref/setssh-guide.txt
-
-# Configuring the Hadoop Daemons
-1. etc/hadoop/core-site.xml
-
