@@ -20,3 +20,9 @@ source /etc/environment
 ~~~
 echo $JAVA_HOME
 ~~~
+
+# download hadoop
+1. run tihdpwget.sh
+~~~
+./tihdpwget.sh
+~~~
