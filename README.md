@@ -88,7 +88,9 @@ source /etc/profile
 echo $JAVA_HOME
 echo $LD_LIBRARY_PATH
 ~~~
-
+~~~
+sudo poweroff
+~~~
 
 # 建立parallels 虛擬機副本
 建立後，設定hostname和固定IP.
