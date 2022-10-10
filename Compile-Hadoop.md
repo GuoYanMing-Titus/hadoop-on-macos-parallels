@@ -32,6 +32,28 @@ make -j$(nproc)
 sudo make install
 ~~~
 
+~~~
+sudo apt -y install snapd
+sudo apt install libsnappy-dev
+sudo apt install zstd
+sudo apt install bzip2
+sudo apt install openssl
+~~~
+~~~
+git clone https://github.com/intel/isa-l.git
+cd isa-l/
+~~~
+~~~
+./autogen.sh
+./configure
+make
+sudo make install
+~~~
+~~~
+sudo apt install bzip2 libbz2-dev
+sudo apt install fuse libfuse-dev
+sudo apt install libzstd-dev
+~~~
 
 
 # 設定環境變數
