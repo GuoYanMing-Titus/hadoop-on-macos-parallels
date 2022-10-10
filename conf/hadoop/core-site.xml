@@ -21,6 +21,7 @@
 		<name>fs.defaultFS</name>
 		<value>hdfs://dtm1:8020</value>
 	</property>
+	<describe>hdfs master node serve port.</describe>
 	<property>
 		<name>io.file.buffer.size</name>
 		<value>4096</value>
@@ -30,6 +31,12 @@
     <value>org.apache.hadoop.io.compress.BZip2Codec,org.apache.hadoop.io.compress.GzipCodec</value>
   </property>
 
+<!-- 暫時不需要設定, 有增加使用者再來設定, override 群組設定.
+	<property>
+    <name>hadoop.user.group.static.mapping.overrides</name>
+    <value>hbase=bigboss;rbean=soup;gbean=soup,rice;ybean=rice</value>
+  </property>
+-->
 	<!--
    以下是設定 HttpFs 服務, HttpFs 必須用 root 啟動
 

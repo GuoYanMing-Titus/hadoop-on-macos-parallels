@@ -15,9 +15,11 @@
 -->
 
 <!-- Put site-specific property overrides in this file. -->
+<configuration>
   <property>
     <name>mapreduce.jobhistory.address</name>
     <value>dtm2:10020</value>
+		<describe>default is 0.0.0.0:10020</describe>
   </property>
   <property>
      <name>mapreduce.framework.name</name>
@@ -53,6 +55,5 @@
       <name>mapreduce.map.java.opts</name>
       <value>-Xmx256m</value>
    </property>
-<configuration>
 
 </configuration>

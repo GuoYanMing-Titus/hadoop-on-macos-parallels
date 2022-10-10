@@ -1,0 +1,32 @@
+#!/bin/bash
+
+w="dta1 dtm1 dtm2 dtw1 dtw2 dtw3"
+
+# [ "$#" != 1 ] && echo "dtconf version" && exit 1
+
+# [ ! -d ~/hdp${1}/opt ] && echo "/hdp${1}/opt not found" && exit 1
+
+# pak=$(ls ~/hdp${1}/opt)
+# conf=$(ls ~/hdp${1}/conf)
+
+# [ "$pak" == "" ] && echo "~/vmalpdt/hdp${1}/opt empty" && exit 1
+
+for x in $w
+do
+  nc -w 1 -z $x 22 &>/dev/null
+  [ "$?" != "0" ] && continue
+	
+
+	scp /home/titus/vmhdp-mac/conf/hadoop/* titus@$x:/opt/hadoop-3.3.4/etc/hadoop/
+	scp /home/titus/vmhdp-mac/conf/hbase/* titus@$x:/opt/hbase-2.4.14/conf/
+	scp /home/titus/vmhdp-mac/conf/hive/* titus@$x:/opt/apache-hive-3.1.3-bin/conf/
+	scp /home/titus/vmhdp-mac/conf/spark/* titus@$x:/opt/spark-3.2.2-bin-hadoop3.2/conf/
+	scp /home/titus/vmhdp-mac/conf/zookeeper/* titus@$x:/opt/apache-zookeeper-3.6.3-bin/conf/
+
+	scp /etc/profile titus@$x:~/tmpfileabcd
+	ssh $x sudo mv ~/tmpfileabcd /etc/profile
+  
+	echo "$x config ok."
+done
+
+

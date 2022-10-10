@@ -51,7 +51,7 @@
 
 # The java implementation to use. By default, this environment
 # variable is REQUIRED on ALL platforms except OS X!
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
+# export JAVA_HOME=
 
 # Location of Hadoop.  By default, Hadoop will attempt to determine
 # this location based upon its execution path.
@@ -144,7 +144,7 @@ export HADOOP_OS_TYPE=${HADOOP_OS_TYPE:-$(uname -s)}
 # Enable optional, bundled Hadoop features
 # This is a comma delimited list.  It may NOT be overridden via .hadooprc
 # Entries may be added/removed as needed.
-# export HADOOP_OPTIONAL_TOOLS="hadoop-kafka,hadoop-openstack,hadoop-aliyun,hadoop-azure,hadoop-azure-datalake,hadoop-aws"
+# export HADOOP_OPTIONAL_TOOLS="hadoop-kafka,hadoop-aliyun,hadoop-openstack,hadoop-azure-datalake,hadoop-aws,hadoop-azure"
 
 ###
 # Options for remote shell connectivity

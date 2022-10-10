@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# w="dta1 dtm1 dtm2 dtw1 dtw2 dtw3"
-w="dta1"
+w="dta1 dtm1 dtm2 dtw1 dtw2 dtw3"
+# w="dta1"
 [ "$#" != 1 ] && echo "dtcopy version" && exit 1
 
-[ ! -d ~/tihdp${1}/opt ] && echo "~/tihdp${1}/opt not found" && exit 1
+[ ! -d ~/hdp${1}/opt ] && echo "~/hdp${1}/opt not found" && exit 1
 
 for x in $w
 do
@@ -21,7 +21,7 @@ do
   #   ssh $x sudo rm -r /opt/$y
   # done
 	
-	scp -r ~/tihdp${1}/opt/* titus@$x:/opt/ &>/dev/null
+	scp -r ~/hdp${1}/opt/* titus@$x:/opt/ &>/dev/null
 
 	ssh $x sudo chown -R root:root /opt
 	ssh $x sudo chmod -R 0777 /opt
