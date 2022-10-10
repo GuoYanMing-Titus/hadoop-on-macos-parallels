@@ -126,9 +126,6 @@ rm ~/id_rsa.pub
 ssh dtm1
 exit
 ~~~
-~~~
-ssh dtm1 sudo cat /etc/sudoers
-~~~
 
 # create pub key for github
 Create key
