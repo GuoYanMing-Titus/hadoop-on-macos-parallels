@@ -129,7 +129,7 @@ cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 rm ~/id_rsa.pub
 ~~~
 
-4.back to dta1(master), try ssh to others.
+4.back to dta1(master), try ssh to others, it should not need passwd.
 ~~~
 ssh dtm1
 exit
@@ -160,4 +160,29 @@ set git config
 ~~~
 git config --global user.email "your email"
 git config --global user.name "your name"
+~~~
+
+
+
+# download package
+1. git clone
+~~~
+git clone git@github.com:GuoYanMing-Titus/vmhdp-mac.git
+~~~
+~~~
+cd vmhdp-mac/
+~~~
+執行tiwage 並帶入參數第幾版
+~~~
+tiwget 1
+~~~
+因為hadoop 64bit需要自己compile
+這邊我們編譯好利用scp傳送至dta1
+這邊是在本地終端下指令
+~~~
+scp hadoop-3.3.4.tar.gz dta1:/home/titus/hdp1/opt/
+~~~
+這邊是在dta1下指令
+~~~
+tar xvzf /home/titus/hdp1/opt/hadoop-3.3.4.tar.gz -C /home/titus/hdp1/opt/
 ~~~
