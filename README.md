@@ -20,7 +20,7 @@ set shiftwidth=2
 sudo vim /etc/hostname
 ~~~
 ~~~
-reboot
+sudo reboot
 ~~~
 3. set static ip
 ~~~
