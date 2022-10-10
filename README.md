@@ -66,7 +66,7 @@ sudo vim /etc/sudoers
 # 安裝openjdk-8-jdk
 ~~~
 sudo apt update
-sudo apt upgrade
+sudo apt -y upgrade
 ~~~
 ~~~
 sudo apt -y install openjdk-8-jdk
