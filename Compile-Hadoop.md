@@ -2,7 +2,7 @@
 # 安裝 openjdk-8-jdk和compile依賴
 ~~~
 sudo apt update
-sudo apt upgrade
+sudo apt -y upgrade
 ~~~
 ~~~
 sudo apt -y install openjdk-8-jdk
@@ -34,10 +34,10 @@ sudo make install
 
 ~~~
 sudo apt -y install snapd
-sudo apt install libsnappy-dev
-sudo apt install zstd
-sudo apt install bzip2
-sudo apt install openssl
+sudo apt -y install libsnappy-dev
+sudo apt -y install zstd
+sudo apt -y install bzip2
+sudo apt -y install openssl
 ~~~
 ~~~
 git clone https://github.com/intel/isa-l.git
@@ -50,10 +50,10 @@ make
 sudo make install
 ~~~
 ~~~
-sudo apt install bzip2 libbz2-dev
-sudo apt install fuse libfuse-dev
-sudo apt install libzstd-dev
-sudo apt install libssl-dev
+sudo apt -y install bzip2 libbz2-dev
+sudo apt -y install fuse libfuse-dev
+sudo apt -y install libzstd-dev
+sudo apt -y install libssl-dev
 ~~~
 
 
@@ -85,4 +85,7 @@ cd hadoop-3.3.4-src/
 ~~~
 ~~~
 mvn package -Pdist,native -DskipTests -Dtar
+~~~
+~~~
+mvn clean package -Pdist,native -DskipTests -Dtar
 ~~~
