@@ -53,6 +53,7 @@ sudo make install
 sudo apt install bzip2 libbz2-dev
 sudo apt install fuse libfuse-dev
 sudo apt install libzstd-dev
+apt-get install libssl-dev
 ~~~
 
 
