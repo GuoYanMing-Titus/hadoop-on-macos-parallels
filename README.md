@@ -71,6 +71,10 @@ sudo apt -y upgrade
 ~~~
 sudo apt -y install openjdk-8-jdk
 ~~~
+# 安裝相關套件
+~~~
+
+~~~
 
 # 設定環境變數
 ~~~
