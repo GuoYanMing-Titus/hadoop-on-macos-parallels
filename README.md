@@ -190,7 +190,7 @@ vim /etc/profile
 加入
 ~~~
 # titus setting
-export JAVA_HOME=/opt/jdk1.8.0_341
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
 export PATH=${PATH}:${JAVA_HOME}/bin
 # set self bin
 export PATH=${PATH}:/home/titus/vmhdp-mac/bin
@@ -202,6 +202,7 @@ export HADOOP_COMMON_HOME=$HADOOP_HOME
 export HADOOP_HDFS_HOME=$HADOOP_HOME
 export HADOOP_LOG_DIR=/tmp
 export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native/
+# export LD_LIBRARY_PATH=/usr/local/lib
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
 [ -z $HADOOP_USER_NAME ] && [ $SHELL == '/bin/bash' ] && declare -r HADOOP_USER_NAME=$USER
