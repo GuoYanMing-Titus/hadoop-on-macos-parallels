@@ -39,7 +39,6 @@ network:
         addresses: [ 10.211.55.1 ]
   version: 2
 ~~~
-apply netplan
 ~~~
 sudo netplan apply
 ~~~
@@ -64,43 +63,32 @@ sudo vim /etc/sudoers
 %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
 ~~~
 
-# install JAVA JDK 8
-先下載至mac, 利用scp指令傳到Linux虛擬機家目錄
+# 安裝openjdk-8-jdk
 ~~~
-sudo mkdir /opt/software
-sudo mv /home/titus/jdk-8u341-linux-aarch64.tar.gz /opt/software/
-~~~
-~~~
-cd /opt/software
+sudo apt update
+sudo apt upgrade
 ~~~
 ~~~
-sudo tar -zxvf jdk-8u341-linux-aarch64.tar.gz
+sudo apt -y install openjdk-8-jdk
 ~~~
-~~~
-sudo mv jdk1.8.0_341 ../
-~~~
-設定環境變數
+
+# 設定環境變數
 ~~~
 sudo vim /etc/profile
 ~~~
-加入環境變數設定, 順便加入/home/titus/vmhdp-mac/bin
 ~~~
-# titus setting
-export JAVA_HOME=/opt/jdk1.8.0_341
-export PATH=${PATH}:${JAVA_HOME}/bin
-# set self bin
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
+export LD_LIBRARY_PATH=/usr/local/lib
 export PATH=${PATH}:/home/titus/vmhdp-mac/bin
 ~~~
-更新變數
 ~~~
 source /etc/profile
 ~~~
-確認環境變數設定
 ~~~
-which java
-java -version
 echo $JAVA_HOME
+echo $LD_LIBRARY_PATH
 ~~~
+
 
 # 建立parallels 虛擬機副本
 建立後，設定hostname和固定IP.
@@ -424,3 +412,62 @@ export PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 ticonfig
 ~~~
 # reboot All.
+
+
+
+
+
+
+
+
+
+applying all changes by source command.
+~~~
+source ~/.bashrc
+~~~
+check up
+~~~
+echo $HADOOP_HOME
+hadoop version
+~~~
+
+
+
+
+
+core-site.xml
+<property>
+ 21     <name>fs.defaultFS</name>
+ 22     <value>hdfs://dtm1:8020</value>
+ 23   </property>
+ 24   <describe>hdfs master node serve port.</describe>
+
+ hdfs-site
+
+
+
+
+
+
+
+
+edit the file etc/hadoop/hadoop-env.sh
+~~~
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
+~~~
+Try the following command:
+~~~
+bin/hadoop
+~~~
+This will display the usage documentation for the hadoop script.
+
+# Setup passphraseless ssh
+Now check that you can ssh to the localhost without a passphrase:
+~~~
+ssh localhost
+~~~
+If you cannot ssh to localhost without a passphrase refer ref/setssh-guide.txt
+
+# Configuring the Hadoop Daemons
+1. etc/hadoop/core-site.xml
+
