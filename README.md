@@ -73,7 +73,24 @@ sudo apt -y install openjdk-8-jdk
 ~~~
 # 安裝相關套件
 ~~~
-
+sudo apt -y install snapd
+sudo apt -y install zstd
+sudo apt -y install bzip2
+sudo apt -y install openssl
+~~~
+~~~
+git clone https://github.com/intel/isa-l.git
+cd isa-l/
+~~~
+~~~
+./autogen.sh
+./configure
+make
+sudo make install
+~~~
+~~~
+sudo apt -y install bzip2
+sudo apt -y install fuse
 ~~~
 
 # 設定環境變數
