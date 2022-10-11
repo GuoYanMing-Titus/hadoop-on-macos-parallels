@@ -39,8 +39,9 @@ network:
         addresses: [ 10.211.55.1 ]
   version: 2
 ~~~
+這邊可以使用sudo netplan apply,但是我使用terminal ssh 連線,呼叫 net apply指令會當掉.
 ~~~
-sudo netplan apply
+sudo reboot
 ~~~
 4. 設定hosts
 ~~~
@@ -55,7 +56,7 @@ sudo vim /etc/hosts
 10.211.55.14 dtw2
 10.211.55.15 dtw3
 ~~~
-5. 修改 /etc/sudoers
+5. 修改 /etc/sudoers, 需使用 wq! 儲存離開
 ~~~
 sudo vim /etc/sudoers
 ~~~
@@ -63,37 +64,87 @@ sudo vim /etc/sudoers
 %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
 ~~~
 
-# 安裝openjdk-8-jdk
+6. 安裝openjdk-8-jdk
 ~~~
 sudo apt update
-sudo apt -y upgrade
+~~~
+~~~
+sudo apt purge openjdk*
 ~~~
 ~~~
 sudo apt -y install openjdk-8-jdk
 ~~~
-# 安裝相關套件
+7. 安裝相關套件
 ~~~
 sudo apt -y install snapd
 sudo apt -y install zstd
 sudo apt -y install bzip2
-sudo apt -y install openssl
+sudo apt -y install fuse
+~~~
+~~~
+sudo apt -y install build-essential autoconf automake libtool cmake pkg-config
+~~~
+8. 安裝ISA
+~~~
+mkdir src
+cd src
 ~~~
 ~~~
 git clone https://github.com/intel/isa-l.git
 cd isa-l/
 ~~~
 ~~~
-./autogen.sh
-./configure
-make
+sudo ./autogen.sh
+~~~
+~~~
+sudo ./configure
+~~~
+~~~
+sudo make
+~~~
+~~~
 sudo make install
 ~~~
+
+9. 安裝hadoop支援的openssl版本
 ~~~
-sudo apt -y install bzip2
-sudo apt -y install fuse
+cd ~/src
+~~~
+~~~
+wget http://www.openssl.org/source/openssl-1.1.1q.tar.gz
+~~~
+~~~
+tar -zxf openssl-1.1.1q.tar.gz 
+~~~
+~~~
+cd openssl-1.1.1q/
+~~~
+~~~
+sudo ./config
+~~~
+~~~
+sudo make
+~~~
+將原本的openssl備份到/tmp
+~~~
+sudo mv /usr/bin/openssl ~/tmp
+~~~
+~~~
+sudo make install
+~~~
+將安裝的openssl link到 /usr/bin/openssl
+~~~
+sudo ln -s /usr/local/bin/openssl /usr/bin/openssl
+~~~
+~~~
+sudo ldconfig
+~~~
+確認版本
+~~~
+openssl version
 ~~~
 
-# 設定環境變數
+10. 設定環境變數
 ~~~
 sudo vim /etc/profile
 ~~~
@@ -113,10 +164,26 @@ echo $LD_LIBRARY_PATH
 sudo poweroff
 ~~~
 
-# 建立parallels 虛擬機副本
+# 克隆 parallels 虛擬機,dtm1,dtm2,dtw1~3
 建立後，設定hostname和固定IP.
+1. change hostname
+~~~
+sudo vim /etc/hostname
+~~~
+2. set static ip
+~~~
+sudo vim /etc/netplan/00-installer-config.yaml
+~~~
+設定對應的ip,
+~~~
+sudo reboot
+~~~
 
-# 設定 rsa key
+
+
+
+# 設定虛擬機之間的 pub key
+
 1. 只有master建立，make a rsa key,不設定密碼直接連續Enter
 ~~~
 cd ~/.ssh
@@ -172,12 +239,11 @@ git config --global user.email "your email"
 git config --global user.name "your name"
 ~~~
 
-
-
 # download package
 1. git clone
 ~~~
-git clone git@github.com:GuoYanMing-Titus/vmhdp-mac.git
+cd ~
+git clone https://github.com/GuoYanMing-Titus/vmhdp-mac.git
 ~~~
 ~~~
 cd vmhdp-mac/
@@ -186,16 +252,20 @@ cd vmhdp-mac/
 ~~~
 tiwget 1
 ~~~
-# special for hadoop
+
+# special for hadoop arm64
 因為hadoop 64bit需要自己compile
 這邊我們編譯好利用scp傳送至dta1
 這邊是在本地終端下指令
 ~~~
-scp hadoop-3.3.4.tar.gz dta1:/home/titus/hdp1/opt/
+scp hadoop-3.3.4.tar.gz dta1:/home/user/
 ~~~
 這邊是在dta1下指令
 ~~~
-tar xvzf /home/titus/hdp1/opt/hadoop-3.3.4.tar.gz -C /home/titus/hdp1/opt/
+tar xvzf ~/hadoop-3.3.4.tar.gz -C /home/titus/hdp1/opt/
+~~~
+~~~
+rm ~/hadoop-3.3.4.tar.gz
 ~~~
 
 # copy /heme/titus/hdp1/opt/* 到每一台虛擬機/opt/
@@ -203,6 +273,7 @@ tar xvzf /home/titus/hdp1/opt/hadoop-3.3.4.tar.gz -C /home/titus/hdp1/opt/
 ~~~
 ticopy 1
 ~~~
+
 
 # 設定Hadoop環境變數
 ~~~
@@ -257,17 +328,18 @@ export SPARK_CONF_DIR=$SPARK_HOME/conf
 export PYSPARK_PYTHON=/usr/bin/python3
 export PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 ~~~
-~~~
-source /etc/profile
-~~~
-# 設定參數
-執行
+
+# config 到各個虛擬機
 ~~~
 ticonfig 1
 ~~~
-全部重開
+
+# 在所有虛擬機的/etc/environment
+新增和在PATH尾巴加上
 ~~~
-sudo reboot
+:/opt/hadoop-3.3.4/bin"
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
 ~~~
 
 
+# 全部重啟
