@@ -28,8 +28,8 @@ do
 	
 	scp ~/.bashrc titus@$x:~/.bashrc
 	
-	scp ~/vmhdp-mac/bin/hdp-bash.sh titus@$x:~/tmphdpbash.sh
-	ssh $x sudo mv ~/tmphdpbash.sh /etc/profile.d/hdp-bash.sh
+#	scp ~/vmhdp-mac/bin/hdp-bash.sh titus@$x:~/tmphdpbash.sh
+#	ssh $x sudo mv ~/tmphdpbash.sh /etc/profile.d/hdp-bash.sh
   
 	echo "$x config ok."
 done
