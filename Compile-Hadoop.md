@@ -71,8 +71,8 @@ sudo mv -f /usr/include/openssl /usr/include/openssl.old
 ~~~
 修改資源庫 link
 ~~~
-ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl 
-ln -s /usr/local/ssl/include/openssl /usr/include/openssl
+sudo ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl 
+sudo ln -s /usr/local/ssl/include/openssl /usr/include/openssl
 ~~~
 修改conf
 ~~~
