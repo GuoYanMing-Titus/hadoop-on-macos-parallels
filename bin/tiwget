@@ -1,17 +1,17 @@
 #!/bin/bash
-
-[ ! -d lib ] && echo "lib not found" && exit 1
-[ ! -f lib/dlist ] && echo "lib/dlist not found" && exit 1
+[ "$#" != 1 ] && echo "lose argument for version number." && exit 1
+[ ! -d ~/vmhdp-mac/lib ] && echo "lib not found" && exit 1
+[ ! -f ~/vmhdp-mac/lib/dlist ] && echo "lib/dlist not found" && exit 1
 
 while read line; do
 	echo $line
-done < lib/dlist
+done < ~/vmhdp-mac/lib/dlist
 
 read -p "download above packages? (YES/NO) " ans
 echo $ans
 
 if [ "$ans" == 'YES' ]; then
-	[ -d ~/hdp${1}/opt ] && rm -r ~/hdp${1}/opt &>/dev/null
+	#[ -d ~/hdp${1}/opt ] && rm -r ~/hdp${1}/opt &>/dev/null
 	#[ -d ~/tihdp${1}/bkopt ] || mkdir -p ~/tihdp${1}/bkopt &&\
 	#echo "mkdir -p ~/tihdp${1}/bkopt" &>/dev/null
 	mkdir -p ~/hdp${1}/opt && echo "mkdir -p ~/hdp${1}/opt"
@@ -27,7 +27,7 @@ if [ "$ans" == 'YES' ]; then
 			n=${line##*/}
 			echo "$n failed"
 		fi
-	done < lib/dlist
+	done < ~/vmhdp-mac/lib/dlist
 fi
 
 sudo chown -R titus:titus ~/hdp${1}/opt
