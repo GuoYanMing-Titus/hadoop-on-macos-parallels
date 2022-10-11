@@ -37,7 +37,6 @@ sudo apt -y install snapd
 sudo apt -y install libsnappy-dev
 sudo apt -y install zstd
 sudo apt -y install bzip2
-sudo apt -y install openssl
 ~~~
 ~~~
 git clone https://github.com/intel/isa-l.git
