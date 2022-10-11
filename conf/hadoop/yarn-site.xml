@@ -18,7 +18,7 @@
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
     <value>dtm2:8088</value>
-		<describe>{yarn.resourcemanager.hostname}:8088</describe>
+		<!--<describe>{yarn.resourcemanager.hostname}:8088</describe>-->
   </property>
   <property>
     <name>yarn.resourcemanager.hostname</name>
@@ -57,8 +57,16 @@
     <name>yarn.nodemanager.resource.cpu-vcores</name>
     <value>2</value>
   </property>
+	<property>
+    <name>yarn.scheduler.minimum-allocation-vcores</name>
+    <value>1</value>
+  </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-vcores</name>
     <value>1</value>
+  </property>
+	<property>
+    <name>yarn.resourcemanager.scheduler.class</name>
+    <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
   </property>
 </configuration>

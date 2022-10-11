@@ -1,19 +1,16 @@
 #!/bin/bash
-
-
-#!/bin/bash
 # dthdpchk
 m="dta1 dtm1 dtm2"
 w="dtw1 dtw2 dtw3 dtw4"
 
 
-for n in $m $w
-do
-	echo $n
-	echo "----"
-done
+#for n in $m $w
+#do
+#	echo $n
+#	echo "----"
+#done
 
-exit 1
+#exit 1
 
 
 for n in $m $w
@@ -21,7 +18,7 @@ do
    nc -w 1 -z $n 22 &>/dev/null
    if [ "$?" == "0" ]; then
       echo "[$n]"
-      ssh $n 'hadoop version | head -n 1'
+      ssh $n 'hadoop version | head -n 3'
       ssh $n 'hadoop checknative'
 
       echo ""

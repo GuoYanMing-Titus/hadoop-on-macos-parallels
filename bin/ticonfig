@@ -2,7 +2,7 @@
 
 w="dta1 dtm1 dtm2 dtw1 dtw2 dtw3"
 
-# [ "$#" != 1 ] && echo "dtconf version" && exit 1
+[ "$#" != 1 ] && echo "dtconf version" && exit 1
 
 # [ ! -d ~/hdp${1}/opt ] && echo "/hdp${1}/opt not found" && exit 1
 
@@ -25,6 +25,11 @@ do
 
 	scp /etc/profile titus@$x:~/tmpfileabcd
 	ssh $x sudo mv ~/tmpfileabcd /etc/profile
+	
+	scp ~/.bashrc titus@$x:~/.bashrc
+	
+	scp ~/vmhdp-mac/bin/hdp-bash.sh titus@$x:~/tmphdpbash.sh
+	ssh $x sudo mv ~/tmphdpbash.sh /etc/profile.d/hdp-bash.sh
   
 	echo "$x config ok."
 done

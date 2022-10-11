@@ -37,4 +37,23 @@
     <name>dfs.datanode.data.dir</name>
     <value>file:/home/titus/dn</value>
   </property>
+	<property>
+    <name>dfs.permissions.superusergroup</name>
+    <value>bigboss</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.acls.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>dfs.webhdfs.enabled</name>
+    <value>false</value>
+    <description>
+     1. webhdfs 功能有關閉, 但 Port 50070 不會被關掉
+     2. NameNode 內定會啟動 WebHDFS 網站
+     3. webhdfs client 必須要能連接到所有 Datanode, 才能執行 HDFS 功能
+    </description>
+  </property>
 </configuration>
