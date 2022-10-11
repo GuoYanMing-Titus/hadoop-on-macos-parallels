@@ -55,6 +55,40 @@ sudo apt -y install fuse libfuse-dev
 sudo apt -y install libzstd-dev
 sudo apt -y install libssl-dev
 ~~~
+openssl 降版本
+~~~
+openssl version
+wget https://ftp.openssl.org/source/openssl-1.1.1q.tar.gz
+tar zxvf openssl-1.1.1q.tar.gz
+cd openssl-1.1.1q
+sudo ./config --prefix=/usr/local/ssl
+sudo make
+sudo make install
+~~~
+將原本的openssl重新命名
+~~~
+sudo mv -f /usr/bin/openssl /usr/bin/openssl.old
+sudo mv -f /usr/include/openssl /usr/include/openssl.old
+~~~
+修改資源庫 link
+~~~
+ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl 
+ln -s /usr/local/ssl/include/openssl /usr/include/openssl
+~~~
+修改conf
+~~~
+sudo vim /etc/ld.so.conf
+~~~
+加入
+~~~
+"/usr/local/ssl/lib"
+~~~
+~~~
+sudo ldconfig -v
+~~~
+~~~
+openssl version
+~~~
 
 
 # 設定環境變數
