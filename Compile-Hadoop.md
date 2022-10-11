@@ -2,7 +2,7 @@
 # 安裝 openjdk-8-jdk和compile依賴
 ~~~
 sudo apt update
-sudo apt -y upgrade
+sudo apt-get purge openjdk*
 ~~~
 ~~~
 sudo apt -y install openjdk-8-jdk
@@ -13,6 +13,7 @@ sudo apt -y install maven
 ~~~
 sudo apt -y install build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev libsasl2-dev
 ~~~
+指定特別版本, protobuf
 ~~~
 wget https://github.com/protocolbuffers/protobuf/releases/download/v21.7/protobuf-java-3.21.7.tar.gz
 ~~~
