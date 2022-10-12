@@ -17,7 +17,9 @@ do
 	echo "$n rm dn/* ok"
 done
 
-
+ssh $m 'hdfs namenode -format -clusterID cute' &>/dev/null
+[ "$?" != "0" ] && echo "formathdfs failure" && exit 1
+echo "formathdfs ok"
 
 
 
