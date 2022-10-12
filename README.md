@@ -337,7 +337,9 @@ ticonfig 1
 # 在所有虛擬機的/etc/environment
 新增和在PATH尾巴加上
 ~~~
-:/opt/hadoop-3.3.4/bin"
+:/opt/hadoop-3.3.4/bin:/opt/hadoop-3.3.4/sbin
+~~~
+~~~
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
 ~~~
 
