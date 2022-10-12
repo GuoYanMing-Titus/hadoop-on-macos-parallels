@@ -18,8 +18,9 @@ do
    nc -w 1 -z $n 22 &>/dev/null
    if [ "$?" == "0" ]; then
       echo "[$n]"
-      ssh $n 'hadoop version | head -n 3'
-      ssh $n 'hadoop checknative'
+      ssh $n 'hadoop version | head -n 3' 2>/dev/null
+			echo ""
+      ssh $n 'hadoop checknative' 2>/dev/null
 
       echo ""
    fi
