@@ -4,7 +4,7 @@ echo "[HDFS]"
 nc -w 1 -z dtm1 22 &>/dev/null
 [ "$?" != 0 ] && echo 'dtm1 exited' && exit 1
 ssh -q dtm1 jps | grep 'NameNode' &>/dev/null
-[ "$?" != 0 ] && echo "HDFS exited" && exit 1
+[ "$?" != 0 ] && echo "HDFS not exited" && exit 1
 hdfs dfsadmin -report &> /tmp/out
 cat /tmp/out | grep 'Live datanodes'
 cat /tmp/out | grep 'Name: '
