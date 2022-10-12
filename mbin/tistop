@@ -1,0 +1,60 @@
+#!/bin/sh
+
+dta1={8db7db9f-f50f-4a54-b9d4-99587c515412}
+dtm1={32dbfa1e-6eee-4f13-b5f0-c95e9a9e12bd}
+dtm2={33cf3785-6951-4801-8977-8d76e47ba404}
+dtw1={c25a1af6-08a0-414d-aba4-537e1c1fb46e}
+dtw2={6843a46c-4468-49e6-bdc6-473faef40924}
+dtw3={25ea39fe-90e1-4dad-bae9-18829aee7817}
+
+vmrlt="$(prlctl status dta1 | cut -d' ' -f4)"
+[ $? != "0" ] && echo "dta1 get status error..." && exit
+[ $vmrlt != "running" ] && exit
+vmrlt="$(prlctl stop dta1)"
+[ $? != "0" ] && echo "dta1 stop error..." && exit
+echo $vmrlt
+sleep 1
+
+vmrlt="$(prlctl status dtm1 | cut -d' ' -f4)"
+[ $? != "0" ] && echo "dtm1 get status error..." && exit
+[ $vmrlt != "running" ] && exit
+vmrlt="$(prlctl stop dtm1)"
+[ $? != "0" ] && echo "dtm1 stop error..." && exit
+echo $vmrlt
+sleep 1
+
+vmrlt="$(prlctl status dtm2 | cut -d' ' -f4)"
+[ $? != "0" ] && echo "dtm2 get status error..." && exit
+[ $vmrlt != "running" ] && exit
+vmrlt="$(prlctl stop dtm2)"
+[ $? != "0" ] && echo "dtm2 stop error..." && exit
+echo $vmrlt
+sleep 1
+
+vmrlt="$(prlctl status dtw1 | cut -d' ' -f4)"
+[ $? != "0" ] && echo "dtw1 get status error..." && exit
+[ $vmrlt != "running" ] && exit
+vmrlt="$(prlctl stop dtw1)"
+[ $? != "0" ] && echo "dtw1 stop error..." && exit
+echo $vmrlt
+sleep 1
+
+vmrlt="$(prlctl status dtw2 | cut -d' ' -f4)"
+[ $? != "0" ] && echo "dtw2 get status error..." && exit
+[ $vmrlt != "running" ] && exit
+vmrlt="$(prlctl stop dtw2)"
+[ $? != "0" ] && echo "dtw2 stop error..." && exit
+echo $vmrlt
+sleep 1
+
+vmrlt="$(prlctl status dtw3 | cut -d' ' -f4)"
+[ $? != "0" ] && echo "dtw3 get status error..." && exit
+[ $vmrlt != "running" ] && exit
+vmrlt="$(prlctl stop dtw3)"
+[ $? != "0" ] && echo "dtw3 stop error..." && exit
+echo $vmrlt
+sleep 1
+
+echo "stop ok."
+
+exit
