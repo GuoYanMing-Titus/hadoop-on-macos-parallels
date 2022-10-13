@@ -339,7 +339,25 @@ ticonfig 1
 ~~~
 
 # 全部重啟
+
 # -------
+# 測試 ssh 登入dta1
+~~~
+dtysychk
+~~~
+~~~
+dthdpchk
+~~~
+啟動 hadoop, 注意開啟和關閉順序, 關閉時先stopyarn再stophdfs
+~~~
+starthdfs; startyarn
+~~~
+~~~
+dtest
+~~~
+
+
+# ------- REEOR
 # HIVE
 # FAILED: HiveException java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
 將原來的metastore_db 備份
