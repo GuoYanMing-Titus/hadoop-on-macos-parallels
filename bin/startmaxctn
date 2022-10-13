@@ -1,0 +1,8 @@
+#!/bin/bash
+
+w=$(cat /etc/hosts | grep -e ' dtw[0-9]' | tr -s ' ' | cut -d' ' -f2)
+for n in $w
+do
+  nc -w 1 -z $n 22 &>/dev/null
+  [ "$?" == "0" ] && ssh $n 'nohup maxjps.sh &>/dev/null &'
+done
