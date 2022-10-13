@@ -80,6 +80,10 @@ sudo apt -y install snapd
 sudo apt -y install zstd
 sudo apt -y install bzip2
 sudo apt -y install fuse
+sudo apt -y install tree
+sudo apt -y install unzip
+sudo apt -y install tree
+sudo apt -y install jq
 ~~~
 ~~~
 sudo apt -y install build-essential autoconf automake libtool cmake pkg-config
