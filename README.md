@@ -339,3 +339,19 @@ ticonfig 1
 ~~~
 
 # 全部重啟
+# -------
+# HIVE
+# FAILED: HiveException java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMetaStoreClient
+將原來的metastore_db 備份
+~~~
+mv metastore_db metastore_db_bkp
+~~~
+init schema
+~~~
+schematool -initSchema -dbType derby
+~~~
+參考
+https://sparkbyexamples.com/apache-hive/hive-hiveexception-runtimeexception-unable-to-instantiate-sessionhivemetastoreclient/
+
+
+
